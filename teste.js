@@ -4,7 +4,7 @@ let yBolinha = 200;
 let diametro = 13;
 let raio = diametro / 2;
 
-//variáveis da velocidade da bolinha
+//velocidade da bolinha
 let velocidadeXBolinha = 6;
 let velocidadeYBolinha = 6;
 let raqueteComprimento = 10;
@@ -18,7 +18,6 @@ let yRaquete = 150;
 let xRaqueteOponente = 585;
 let yRaqueteOponente = 150;
 let velocidadeYOponente;
-let chanceDeErrar = 0;
 
 let colidiu = false;
 
@@ -96,7 +95,6 @@ function verificaColisaoRaquete() {
     yBolinha + raio > yRaquete
   ) {
     velocidadeXBolinha *= -1;
-    raquetada.play();
   }
 }
 
@@ -119,8 +117,7 @@ function verificaColisaoRaquete(x, y) {
 function movimentaRaqueteOponente() {
   velocidadeYOponente =
     yBolinha - yRaqueteOponente - raqueteComprimento / 2 - 30;
-  yRaqueteOponente += velocidadeYOponente + chanceDeErrar;
-  calculaChanceDeErrar();
+  yRaqueteOponente += velocidadeYOponente;
 }
 
 function incluiPlacar() {
@@ -145,19 +142,5 @@ function marcaPonto() {
   if (xBolinha < 10) {
     pontosDoOponente += 1;
     ponto.play();
-  }
-}
-
-function calculaChanceDeErrar() {
-  if (pontosDoOponente >= meusPontos) {
-    chanceDeErrar += 1;
-    if (chanceDeErrar >= 39) {
-      chanceDeErrar = 40;
-    }
-  } else {
-    chanceDeErrar -= 1;
-    if (chanceDeErrar <= 35) {
-      chanceDeErrar = 35;
-    }
   }
 }
